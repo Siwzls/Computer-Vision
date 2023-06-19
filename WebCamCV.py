@@ -1,11 +1,13 @@
 import cv2
+import json
 from matplotlib import pyplot as plt
 
-face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-cap = cv2.VideoCapture(0)
+f = open('config.json')
 
-def TakePhoto(frame):
-    cv2.imwrite('images/webcamphoto.jpg', frame)
+data = json.load(f)
+
+face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+cap = cv2.VideoCapture(data['webcamNumber'])
 
 while cap.isOpened(): 
     ret, frame = cap.read()
